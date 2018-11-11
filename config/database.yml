@@ -84,4 +84,3 @@ test:
 #
 production:
 <<: *default
-database: dbm1946fm9u769
