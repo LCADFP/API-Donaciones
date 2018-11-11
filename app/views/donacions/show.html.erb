@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @donacion.nombre %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @donacion.estado %>
+</p>
+
+<p>
+  <strong>Categoria:</strong>
+  <%= @donacion.categoria %>
+</p>
+
+<p>
+  <strong>Cantidad:</strong>
+  <%= @donacion.cantidad %>
+</p>
+
+<p>
+  <strong>Img:</strong>
+  <%= @donacion.img %>
+</p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @donacion.descripcion %>
+</p>
+
+<p>
+  <strong>Users:</strong>
+  <%= @donacion.users %>
+</p>
+
+<%= link_to 'Edit', edit_donacion_path(@donacion) %> |
+<%= link_to 'Back', donacions_path %>

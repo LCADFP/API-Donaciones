@@ -7,4 +7,4 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Role.create(name:'admin')
 Role.create(name:'user')
-Role.create(name:'cai')
+Role.create(name:'fundacion')

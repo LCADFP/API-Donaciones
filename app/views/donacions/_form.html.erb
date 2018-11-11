@@ -1,0 +1,52 @@
+<%= form_with(model: donacion, local: true) do |form| %>
+  <% if donacion.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(donacion.errors.count, "error") %> prohibited this donacion from being saved:</h2>
+
+      <ul>
+      <% donacion.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nombre %>
+    <%= form.text_field :nombre %>
+  </div>
+
+  <div class="field">
+    <%= form.label :estado %>
+    <%= form.text_field :estado %>
+  </div>
+
+  <div class="field">
+    <%= form.label :categoria %>
+    <%= form.text_field :categoria %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cantidad %>
+    <%= form.text_field :cantidad %>
+  </div>
+
+  <div class="field">
+    <%= form.label :img %>
+    <%= form.text_field :img %>
+  </div>
+
+  <div class="field">
+    <%= form.label :descripcion %>
+    <%= form.text_field :descripcion %>
+  </div>
+
+  <div class="field">
+    <%= form.label :users_id %>
+    <%= form.text_field :users_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_30_000155) do
+ActiveRecord::Schema.define(version: 2018_10_25_050946) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "donacions", force: :cascade do |t|
+    t.string "nombre"
+    t.string "estado"
+    t.string "categoria"
+    t.integer "cantidad"
+    t.string "img"
+    t.string "descripcion"
+    t.bigint "users_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["users_id"], name: "index_donacions_on_users_id"
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string "name", null: false
@@ -27,7 +40,7 @@ ActiveRecord::Schema.define(version: 2018_09_30_000155) do
     t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "role_id", default: 2, null: false
+    t.bigint "role_id", null: false
     t.boolean "email_confirmed", default: false
     t.string "confirm_token"
     t.string "nombres", null: false
@@ -41,5 +54,6 @@ ActiveRecord::Schema.define(version: 2018_09_30_000155) do
     t.index ["role_id"], name: "index_users_on_role_id"
   end
 
+  add_foreign_key "donacions", "users", column: "users_id"
   add_foreign_key "users", "roles"
 end
