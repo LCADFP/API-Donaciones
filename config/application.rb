@@ -6,7 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module ApiComunidadSegura
+module ApiAdonarsedijo
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
@@ -19,7 +19,9 @@ module ApiComunidadSegura
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
-
+    
+    config.serve_static_assets = true
+     
     #config.api_only = true
 
     config.middleware.insert_before 0, Rack::Cors do
