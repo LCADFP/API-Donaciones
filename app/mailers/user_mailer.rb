@@ -1,6 +1,4 @@
-class UserMailer < ActionMailer::Base
-  default from: 'from@example.com'
-  layout 'mailer'
+class UserMailer < ApplicationMailer
 
     def registration_confirmation(user) # Metodo que envia el email de confirmacion
         @user = user
