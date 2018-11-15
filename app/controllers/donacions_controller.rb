@@ -1,14 +1,21 @@
 class DonacionsController < ApplicationController
+
   before_action :set_donacion, only: [:show, :edit, :update, :destroy]
 
   # GET /donacions
   def index
-    @donacions = Donacion.all
+    
+    if(current_user.role.name == 'fundacion')
+     @donacions = Donacion.all 
+    else      
+      @donacions = Donacion.where(["user_id = :user_id", { user_id: current_user.id }])
+    end  
     render json: @donacions
   end
 
   # GET /donacions/1
   def show
+    render json: @users
   end
 
   # GET /donacions/new
@@ -23,6 +30,7 @@ class DonacionsController < ApplicationController
   # POST /donacions
   def create
     @donacion = Donacion.new(donacion_params)
+    @donacion.user_id = current_user.id
 
     if @donacion.save
       redirect_to @donacion, notice: 'Donacion was successfully created.'

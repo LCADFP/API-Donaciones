@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :authenticate_user, except: [:create, :confirm_email]
-  before_action :set_user, only: [:show, :update, :destroy]
+  before_action :set_user, only: [:show, :update, :destroy] 
   skip_before_action :verify_authenticity_token, only:[:create]
 
   # GET /users

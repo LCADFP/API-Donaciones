@@ -8,3 +8,7 @@
 Role.create(name:'admin')
 Role.create(name:'user')
 Role.create(name:'fundacion')
+
+Estado.create(name:'disponible')
+Estado.create(name:'activo')
+Estado.create(name:'inactivo')

@@ -22,10 +22,12 @@ ActiveRecord::Schema.define(version: 2018_10_25_050946) do
     t.integer "cantidad"
     t.string "img"
     t.string "descripcion"
-    t.bigint "users_id"
+    t.bigint "users_id", 
+    t.bigint "estados_id", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["users_id"], name: "index_donacions_on_users_id"
+    t.index ["estados_id"], name: "index_donacions_on_estados_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -33,6 +35,13 @@ ActiveRecord::Schema.define(version: 2018_10_25_050946) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_roles_on_name", unique: true
+  end
+
+  create_table "estados", force: :cascade do |t|
+    t.string "name"
+    t.index ["users_id"], name: "index_donacions_on_users_id"
+    t.index ["estados_id"], name: "index_donacions_on_estados_id"
+    t.index ["name"], name: "index_estados_on_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|
