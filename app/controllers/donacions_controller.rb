@@ -7,7 +7,7 @@ class DonacionsController < ApplicationController
   def index
     
     #  if(current_user_role_id == 2)
-    if session[:current_user_id] === 1
+    if (session[:current_user_id] === 1)
      @donacions = Donacion.all 
      else      
      @donacions = Donacion.where("users_id = 3")
@@ -65,5 +65,9 @@ class DonacionsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def donacion_params
       params.require(:donacion).permit(:nombre, :estado, :categoria, :cantidad, :img, :descripcion, :users_id)
+    end
+    def user_params
+      params.permit(:nombres, :apellidos, :fecha_nac, :direccion, :telefono, :email, :role_id, :password,
+        :password_confirmation)
     end
 end
