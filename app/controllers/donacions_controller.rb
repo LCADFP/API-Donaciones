@@ -1,15 +1,17 @@
 class DonacionsController < ApplicationController
 
+  before_action :authenticate_user, only: [:show, :edit, :update, :destroy]
   before_action :set_donacion, only: [:show, :edit, :update, :destroy]
 
   # GET /donacions
   def index
     
-    if(current_user.role.name == 'fundacion')
+    #  if(current_user_role_id == 2)
+    if session[:current_user_id] === 1
      @donacions = Donacion.all 
-    else      
-      @donacions = Donacion.where(["user_id = :user_id", { user_id: current_user.id }])
-    end  
+     else      
+     @donacions = Donacion.where("users_id = 3")
+     end  
     render json: @donacions
   end
 
@@ -30,7 +32,7 @@ class DonacionsController < ApplicationController
   # POST /donacions
   def create
     @donacion = Donacion.new(donacion_params)
-    @donacion.user_id = current_user.id
+    @donacion.users_id = current_user.id
 
     if @donacion.save
       redirect_to @donacion, notice: 'Donacion was successfully created.'

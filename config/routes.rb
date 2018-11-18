@@ -7,4 +7,6 @@ Rails.application.routes.draw do
     get '/:token/confirm_email/', :to => "users#confirm_email", as: 'confirm_email' 
 
     resources :password_resets 
+
+    resources :donacions
 end

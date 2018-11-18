@@ -8,8 +8,7 @@ class CreateDonacions < ActiveRecord::Migration[5.2]
       t.string :img
       t.string :descripcion
       t.references :users, foreign_key: true
-      t.references :estados, foreign_key: true
-
+    
       t.timestamps
     end
   end

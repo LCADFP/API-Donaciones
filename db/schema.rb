@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_25_050946) do
+ActiveRecord::Schema.define(version: 2018_11_15_145017) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,12 +22,19 @@ ActiveRecord::Schema.define(version: 2018_10_25_050946) do
     t.integer "cantidad"
     t.string "img"
     t.string "descripcion"
-    t.bigint "users_id", 
-    t.bigint "estados_id", default: 1, null: false
+    t.bigint "users_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["users_id"], name: "index_donacions_on_users_id"
+    t.bigint "estados_id", default: 1, null: false
     t.index ["estados_id"], name: "index_donacions_on_estados_id"
+    t.index ["users_id"], name: "index_donacions_on_users_id"
+  end
+
+  create_table "estados", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_estados_on_name", unique: true
   end
 
   create_table "roles", force: :cascade do |t|
@@ -35,13 +42,6 @@ ActiveRecord::Schema.define(version: 2018_10_25_050946) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_roles_on_name", unique: true
-  end
-
-  create_table "estados", force: :cascade do |t|
-    t.string "name"
-    t.index ["users_id"], name: "index_donacions_on_users_id"
-    t.index ["estados_id"], name: "index_donacions_on_estados_id"
-    t.index ["name"], name: "index_estados_on_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 2018_10_25_050946) do
     t.index ["role_id"], name: "index_users_on_role_id"
   end
 
+  add_foreign_key "donacions", "estados", column: "estados_id"
   add_foreign_key "donacions", "users", column: "users_id"
   add_foreign_key "users", "roles"
 end
